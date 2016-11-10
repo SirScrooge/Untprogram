@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 	//Check if program is to run batch mode
 	
 	//Run interactive mode if
-	
+	//
 	int i=0;
 	int j=0;
 	char *string;
@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 	{
 		printf("Prompt>	");
 		scanf("%s",string);			//scans user input
+		// entering something returns a segmentation fault
 		while(string!=NULL)
 		{
 			input[i]=strtok(string,";");		//puts substrings from string into input commands
@@ -23,8 +24,8 @@ int main(int argc, char *argv[])
 		}
 		for(j=0;j<i;j++)	//executes commands
 		{
-			char *arg[]={input[i],NULL};
-			execvp(input[i],arg);
+			char *arg[]={input[j],NULL};
+			execvp(input[j],arg);
 		}
 	}	
 }  
