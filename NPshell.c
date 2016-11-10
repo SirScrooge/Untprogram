@@ -19,7 +19,7 @@ char  buffer[MAX_LENGTH]; //parent processing buffer
 
     pipe(fd);	//create pipe in parent
 
-    if (argc > 3){
+    if (argc > 2){
 	printf("Usage: ./shell [batchFile] \nerror- too many arguments (%i)!\n", argc);
 	exit(0);
     }
