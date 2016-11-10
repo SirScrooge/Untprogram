@@ -1,6 +1,6 @@
 /*
 this program waas gathered from StackOverflow
-http://stackoverflow.com/questions/28502305/writing-a-simple-shell-in-c-using-fork-execvp
+http://stackoverflow.com/questions/12681034/parsing-input-with-strtok-in-c
 */
 #include <stdlib.h>
 #include <stdio.h>
