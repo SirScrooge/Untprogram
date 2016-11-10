@@ -10,6 +10,9 @@
 #define READ 0		//read index
 #define WRITE 1 	//write index
 
+void run_batch();
+void run_interactive();
+	
 int main(int argc, char *argv[]){
 
 int fd[2];		  //file descriptor variable
@@ -22,6 +25,10 @@ char  buffer[MAX_LENGTH]; //parent processing buffer
     if (argc > 2){
 	printf("Usage: ./shell [batchFile] \nerror- too many arguments (%i)!\n", argc);
 	exit(0);
+    }
+    else if(argc == 2)
+    {
+            
     }
     else if (argc == 1){
         printf("*** interactive mode ***\n");
@@ -40,4 +47,13 @@ char  buffer[MAX_LENGTH]; //parent processing buffer
     return 0;
 }
 
+void run_batch()
+{
+	
+}
 
+void run_interactive()
+{
+	
+	
+}
