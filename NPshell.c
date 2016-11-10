@@ -28,20 +28,11 @@ char  buffer[MAX_LENGTH]; //parent processing buffer
     }
     else if(argc == 2)
     {
-            
+	run_batch();
     }
-    else if (argc == 1){
-        printf("*** interactive mode ***\n");
-
-	while (1){
-	    printf("prompt> ");
-
-	    fgets (buffer, MAX_LENGTH, stdin);
-	    token = strtok (buffer, ";\n");
-	    while (token != NULL){
-
-	    }
-        }
+    else if (argc == 1)
+    {
+	run_interactive();	
     }
 
     return 0;
@@ -54,6 +45,15 @@ void run_batch()
 
 void run_interactive()
 {
-	
-	
+        printf("*** interactive mode ***\n");
+
+	while (1){
+	    printf("prompt> ");
+
+	    fgets (buffer, MAX_LENGTH, stdin);
+	    token = strtok (buffer, ";\n");
+	    while (token != NULL){
+
+	    }
+        }	
 }
