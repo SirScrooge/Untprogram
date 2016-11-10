@@ -40,7 +40,7 @@ char  buffer[MAX_LENGTH]; //parent processing buffer
 
 void run_batch()
 {
-	
+	printf("*** batch mode ***\n");
 }
 
 void run_interactive()
