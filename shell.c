@@ -21,10 +21,10 @@ int main(int argc, char *argv[])
 			input[i]=strtok(string,";");		//puts substrings from string into input commands
 			i++;
 		}
-		for(j=0;j<i;j++)
+		for(j=0;j<i;j++)	//executes commands
 		{
-		char *arg[]={input[i],NULL};
-		execvp(input[i],arg);
+			char *arg[]={input[i],NULL};
+			execvp(input[i],arg);
 		}
 	}	
 }  
