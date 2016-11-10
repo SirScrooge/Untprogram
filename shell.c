@@ -3,6 +3,10 @@
 #include<string.h>
 int main(int argc, char *argv[])
 {
+	//Check if program is to run batch mode
+	
+	//Run interactive mode if
+	
 	int i=0;
 	char *string;
 	char *input[100];
