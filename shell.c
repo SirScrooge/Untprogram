@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
 	//Check if program is to run batch mode
 	
-	//Run interactive mode if
+	//Check for and Run interactive mode if batch mode not specified
 	
 	int i=0;
 	char *string;
