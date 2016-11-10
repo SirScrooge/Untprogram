@@ -1,21 +1,30 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<unistd.h>
 int main(int argc, char *argv[])
 {
 	//Check if program is to run batch mode
 	
-	//Check for and Run interactive mode if batch mode not specified
+	//Run interactive mode if
 	
 	int i=0;
+	int j=0;
 	char *string;
 	char *input[100];
-	printf("Prompt>	");
-	scanf("%s",string);			//scans user input
-	while(string!=NULL)
+	if(argc==1)
 	{
-		input[i]=strtok(string,";");		//puts substrings from string into input commands
-		i++;
+		printf("Prompt>	");
+		scanf("%s",string);			//scans user input
+		while(string!=NULL)
+		{
+			input[i]=strtok(string,";");		//puts substrings from string into input commands
+			i++;
+		}
+		for(j=0;j<i;j++)
+		{
+		char *arg[]={input[i],NULL};
+		execvp(input[i],arg);
+		}
 	}	
-}	
-  
+}  
