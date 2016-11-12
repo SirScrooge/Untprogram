@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<unistd.h>
+int token(char *string);
 int main(int argc, char *argv[])
 {
 	//Check if program is to run batch mode
@@ -14,14 +15,9 @@ int main(int argc, char *argv[])
 	char *input[100];
 	if(argc==1)
 	{
-		printf("Prompt>	");
-		scanf("%s",string);			//scans user input
-		// entering something returns a segmentation fault
-		while(string!=NULL)
-		{
-			input[i]=strtok(string,";");		//puts substrings from string into input commands
-			i++;
-		}
+		printf("Prompt> ");
+    		scanf("%s",string);                     //scans user input
+		token(string);
 		for(j=0;j<i;j++)	//executes commands
 		{
 			char *arg[]={input[j],NULL};
@@ -29,3 +25,14 @@ int main(int argc, char *argv[])
 		}
 	}	
 }  
+int token(char *string)
+{
+	printf("Prompt> ");
+        scanf("%s",string);                     //scans user input
+        // entering something returns a segmentation fault
+        while(string!=NULL)
+        {
+           input[i]=strtok(string,";");            //puts substrings from string into input commands
+           i++;
+        }
+}	
