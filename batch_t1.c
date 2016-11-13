@@ -14,11 +14,19 @@ int main(int argc, char **argv)
 	}
 	
 	char line[120];
+	int i = 0;
 
 	while(fgets(line, sizeof(line), infile))
 	{
 		printf("batch line >> %s\n", line);
 		
+		for(i; i < strlen(line); i++)
+		{
+			if(line[i] == ';')
+			{
+				printf("; is here\n");
+			}
+		}
 
 	}
 
