@@ -28,15 +28,35 @@ char  buffer[MAX_LENGTH]; //parent processing buffer
         while (1){
             printf("prompt> ");
 
-            fgets (buffer, MAX_LENGTH, stdin);
+            fgets (buffer, sizeof(buffer), stdin);
             token = strtok (buffer, ";\n");
 
             while (token != NULL){
-                printf("\n*** running command: %s ***\n", token);
                 system(token);
                 token = strtok(NULL, ";");
             }
         }
+    }
+    else if (argc == 2){
+	FILE *infile = fopen(argv[1], "r");
+
+        if(infile == NULL){
+	    perror("Error ");
+	    return 1;
+	}
+
+        char line[120];
+
+   	 while(fgets(line, sizeof(line), infile)){
+            printf("batch line> %s\n", line);
+            token = strtok(line, ";\n");
+
+	    while (token != NULL){
+                system(token);
+                token = strtok(NULL, ";\n");
+            }
+         }
+
     }
 
     return 0;
