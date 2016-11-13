@@ -1,22 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>  //strtok()
-
+#include <stdio.h> //printf, fgets
+#include <stdlib.h> //exit
+#include <string.h>  //strtok,strcmp
 #define MAX_LENGTH 512  //max length for a single command to 512 characters
-#define READ 0          //read index
-#define WRITE 1         //write index
 
 int main(int argc, char *argv[]){
 
 char * token;     //temporary pointer to tokenize command for processing
 char  buffer[MAX_LENGTH]; //parent processing buffer
 
-
     if (argc > 2){	 //if wrong # of arguments supplied, exit the shell
         printf("Usage: ./shell [batchFile] \nerror- too many arguments (%i)!\n", argc);
         exit(0);
     }
+
     else if (argc == 1){ //if shell is to run in interactive mode
         printf("*** interactive mode ***\n");
 
