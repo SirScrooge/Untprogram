@@ -1,98 +1,64 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<unistd.h>
-int pip(char *input);
-int main()
-{
-	//Check if program is to run batch mode
-	
-	//Run interactive mode if
-	//
-	int i=0;
-	int j=0;
-	char *string;
-	char *input;
-	char *p;
-	//char tok[100];
-	while(1)
-	{
-		
-		printf("Prompt> ");
-    	scanf("%s",string);                     //scans user input
-		input=strtok(string,";");  		//puts substrings from string into input commands
-		//i=0;
-		/*while((getchar(input))!=NULL)
-		{
-			tok[i]=getchar(input);
-		}*/
-		while(input!=NULL)	//executes commands
-		{
-			/*i=0;
-			while(tok[i]!="|"||tok[i]!=NULL||tok[i]!=";")
-			{
-				if(tok[i]=="|")
-				{
-					pip(input);
-					break;
-				}
-				else
-				{
-					i++;
-				}	
-			}		*/
-			//if(fork()==0)
-		//	{	
-			if(input=="quit\n")
-			{
-				exit(1);
-			}	
-			char *arg[]={input,NULL};
-			execvp(input,arg);
-			input=strtok(NULL,";");
-		//	}	
-			
-		}
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <string.h>  //strtok()
+#include <signal.h> //ctrl-c quit
 
-	}	
-}  
-/*int pip(char *input)
-{
-	int fd[2];
-	pipe(fd);	//creates a pipe
-	char *cmd[2];
-	cmd[0]=strtok(input,"|");
-	cmd[1]=strtok(NULL,"|");
-	if (fork()==0)
-	{
-		
-		dup2(fd[1],1); //puts output into pipe
-		close(fd[0]);
-		close(fd[1]);
-		
-		char *arg[]={cmd[0],NULL};
-		execvp(cmd[0],arg);	//does the first argument
-		exit(1);
-	}
-	else if(fork()==0)
-	{
-		dup2(fd[0],0);		//reads the input from pipe
-		close(fd[0]);
-		close(fd[1]);
-		char *arg[]={cmd[1],NULL};
-		execvp(cmd[1],arg);	//does 2nd argument	
-		exit(1);
-	}
-	else 
-	{
-		
-		close(fd[0]);
-		close(fd[1]);
-		
-		wait();
-		wait();
-		printf("command line pipe completed.\n");
+#define MAX_LENGTH 512  //max length for a single command to 512 characters
+#define READ 0          //read index
+#define WRITE 1         //write index
+
+int main(int argc, char *argv[]){
+
+int fd[2];                //file descriptor variable
+char * token;     //temporary pointer to tokenize command for processing
+char  buffer[MAX_LENGTH]; //parent processing buffer
+//char * temp_cmd[100];
+
+    pipe(fd);   //create pipe in parent
+
+    if (argc > 2){
+        printf("Usage: ./shell [batchFile] \nerror- too many arguments (%i)!\n", argc);
+        exit(0);
+    }
+    else if (argc == 1){
+        printf("*** interactive mode ***\n");
+
+        while (1){
+            printf("prompt> ");
+
+            fgets (buffer, sizeof(buffer), stdin);
+            token = strtok (buffer, ";\n");
+
+            while (token != NULL){
+                system(token);
+                token = strtok(NULL, ";");
+            }
+        }
+    }
+    else if (argc == 2){
+	FILE *infile = fopen(argv[1], "r");
+
+        if(infile == NULL){
+	    perror("Error ");
+	    return 1;
 	}
 
-}	
-*/
+        char line[120];
+
+   	 while(fgets(line, sizeof(line), infile)){
+            printf("batch line> %s\n", line);
+            token = strtok(line, ";\n");
+
+	    while (token != NULL){
+                system(token);
+                token = strtok(NULL, ";\n");
+            }
+         }
+
+    }
+
+    return 0;
+}
+
