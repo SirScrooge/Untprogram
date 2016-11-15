@@ -1,3 +1,12 @@
+/*
+Group Number 24: Nicholas Partridge, Samuel Malenfant, Andrew Clark, Andrew Jenkins
+Date: 11/14/16
+Project: Major 1
+Description: Implement a basic shell program that can run an interactive mode which
+	prompts for continuous user input until the program is exited
+	or a batch mode which accepts a command line argument which is a file name.
+	Within the files are commands which are to be run line by line.
+*/
 #include <stdio.h> //printf, fgets
 #include <stdlib.h> //exit
 #include <string.h>  //strtok,strcmp
