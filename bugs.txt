@@ -1,0 +1,15 @@
+Known BUGS
+
+1) Shell does not have signal capturing capabilities.
+  - Using control-D does not stop the shell, it will display an error message
+    and continue to display the prompt. Using control-C or control-Z will exit the shell.
+  - Aside from using control-(signaling method), the user can type in "quit" by itself and
+    the shell will exit.
+2) Shell will not finish other commands before "quit" is executed.
+  - If "quit" is not entered on a line by itself, the shell will not execute the other
+    commands before it exits the shell.
+      EX) quit ; ls -l / ls | wc ; ps ; quit
+        - Each of theses cases will quit the shell before running other commands.
+3) Shell does not handle directory redirects.
+  - Program cannot handle commands related directory changes
+      EX) cd abc1234/cs3600 / chdir
