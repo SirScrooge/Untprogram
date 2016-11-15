@@ -1,5 +1,6 @@
 /*
 Group Number 24: Nicholas Partridge, Samuel Malenfant, Andrew Clark, Andrew Jenkins
+Course Info: CSCE 3600 - 004 / Dr. Thompson
 Date: 11/14/16
 Project: Major 1
 Description: Implement a basic shell program that can run an interactive mode which
