@@ -49,7 +49,7 @@ char  buffer[MAX_LENGTH]; //parent processing buffer
                 token = strtok(NULL, ";\n");	//remove previous token
             }//2nd while
         }//1st while
-
+	fclose(infile);
     }//else if
 
     return 0;
