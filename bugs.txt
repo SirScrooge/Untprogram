@@ -11,5 +11,5 @@ Known BUGS
       EX) quit ; ls -l / ls | wc ; ps ; quit
         - Each of theses cases will not quit the shell before running other commands.
 3) Shell does not handle directory redirects.
-  - Program cannot handle commands related directory changes
+  - Program cannot handle commands related to directory changes.
       EX) cd abc1234/cs3600
